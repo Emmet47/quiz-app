@@ -34,7 +34,28 @@ class StartScreen extends StatelessWidget {
             style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text('Start Quiz'),
-          )
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: () {
+                // Tıklama işlemleri
+              },
+              borderRadius: BorderRadius.circular(8),
+              highlightColor: const Color.fromARGB(50, 255, 255, 255),
+              child: Ink(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.green,
+                ),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                  child: const Text('test'),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
