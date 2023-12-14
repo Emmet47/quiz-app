@@ -38,9 +38,7 @@ class StartScreen extends StatelessWidget {
           Material(
             type: MaterialType.transparency,
             child: InkWell(
-              onTap: () {
-                // Tıklama işlemleri
-              },
+              onTap: () {},
               borderRadius: BorderRadius.circular(8),
               highlightColor: const Color.fromARGB(50, 255, 255, 255),
               child: Ink(
