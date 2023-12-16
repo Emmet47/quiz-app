@@ -39,17 +39,23 @@ class StartScreen extends StatelessWidget {
             type: MaterialType.transparency,
             child: InkWell(
               onTap: () {},
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(30),
               highlightColor: const Color.fromARGB(50, 255, 255, 255),
               child: Ink(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(35),
+                  border: Border.all(width: 0.6, color: Colors.grey),
+                  color: Colors.transparent,
                 ),
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
-                  child: const Text('test'),
+                      const EdgeInsets.symmetric(vertical: 9, horizontal: 35),
+                  child: const Text(
+                    'Start Quiz',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
