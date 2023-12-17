@@ -33,9 +33,7 @@ class StartScreen extends StatelessWidget {
             height: 30,
           ),
           OutlinedButton.icon(
-            onPressed: () {
-              startQuiz();
-            },
+            onPressed: startQuiz,
             style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text('Start Quiz'),
@@ -43,9 +41,7 @@ class StartScreen extends StatelessWidget {
           Material(
             type: MaterialType.transparency,
             child: InkWell(
-              onTap: () {
-                startQuiz();
-              },
+              onTap: startQuiz,
               borderRadius: BorderRadius.circular(30),
               highlightColor: const Color.fromARGB(50, 255, 255, 255),
               child: Ink(
