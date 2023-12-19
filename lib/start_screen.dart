@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(
@@ -22,10 +23,10 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          const Text(
+          Text(
             'Learn Flutter the fun way!',
-            style: TextStyle(
-              color: Color.fromARGB(255, 237, 223, 252),
+            style: GoogleFonts.lato(
+              color: const Color.fromARGB(255, 237, 223, 252),
               fontSize: 24,
             ),
           ),
@@ -38,25 +39,39 @@ class StartScreen extends StatelessWidget {
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text('Start Quiz'),
           ),
-          Material(
-            type: MaterialType.transparency,
-            child: InkWell(
-              onTap: startQuiz,
-              borderRadius: BorderRadius.circular(30),
-              highlightColor: const Color.fromARGB(50, 255, 255, 255),
-              child: Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(35),
-                  border: Border.all(width: 0.6, color: Colors.grey),
-                  color: Colors.transparent,
-                ),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 9, horizontal: 35),
-                  child: const Text(
-                    'Start Quiz',
-                    style: TextStyle(
-                      color: Colors.white,
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 120),
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: startQuiz,
+                borderRadius: BorderRadius.circular(30),
+                highlightColor: const Color.fromARGB(50, 255, 255, 255),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(35),
+                    border: Border.all(width: 0.6, color: Colors.grey),
+                    color: Colors.transparent,
+                  ),
+                  child: Container(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Start Quiz',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ),
