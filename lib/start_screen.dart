@@ -53,26 +53,24 @@ class StartScreen extends StatelessWidget {
                     border: Border.all(width: 0.6, color: Colors.grey),
                     color: Colors.transparent,
                   ),
-                  child: Container(
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.arrow_right_alt,
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.arrow_right_alt,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Start Quiz',
+                        style: TextStyle(
                           color: Colors.white,
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Start Quiz',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
               ),
