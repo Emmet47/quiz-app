@@ -13,6 +13,7 @@ class QuestionIdentifier extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final questionNumber = questionIndex + 1;
+    print("Question Number: $questionNumber");
     return Container(
       width: 30,
       height: 30,

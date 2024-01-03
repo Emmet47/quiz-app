@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/models/quiz_question.dart';
 import 'package:quizz_app/questions_summary/summary_item.dart';
 
 class QuestionsSummary extends StatelessWidget {
-  const QuestionsSummary(this.summaryData, {super.key});
-
-  final List<Map<String, Object>> summaryData;
+  const QuestionsSummary({
+    super.key,
+    required this.answeredQuestions,
+  });
+  final List<QuizQuestion> answeredQuestions;
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +15,14 @@ class QuestionsSummary extends StatelessWidget {
       height: 400,
       child: SingleChildScrollView(
         child: Column(
-          children: summaryData.map(
+          children: answeredQuestions.map(
             (data) {
-              return SummaryItem(data);
+              return SummaryItem(
+                question: data,
+                userAnswer: data.userAnswer.toString(),
+              );
             },
-          ).toList(), // toList ne için kullanılıyor?
+          ).toList(),
         ),
       ),
     );

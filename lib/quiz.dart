@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/models/quiz_question.dart';
 import 'package:quizz_app/start_screen.dart';
 import 'package:quizz_app/question_screen.dart';
 import 'package:quizz_app/data/questions.dart';
@@ -13,7 +14,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List<String> selectedAnswers = [];
+  List<QuizQuestion> answeredQuestion = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -22,22 +23,15 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void chooseAnswer(String answer) {
-    selectedAnswers.add(answer);
-
-    if (selectedAnswers.length == questions.length) {
-      setState(() {
-        activeScreen = 'results-screen';
-      });
-    }
-  }
-
   void restartQuiz() {
     setState(() {
-      selectedAnswers = [];
-      activeScreen = 'questions_screen';
+      startIndex = 0;
+      answeredQuestion = [];
+      activeScreen = 'questions-screen';
     });
   }
+
+  int startIndex = 0;
 
   @override
   Widget build(context) {
@@ -45,14 +39,24 @@ class _QuizState extends State<Quiz> {
 
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
-        onSelectAnswer: chooseAnswer,
+        question: questions[startIndex],
+        onSelectAnswer: (answer) {
+          answeredQuestion
+              .add(questions[startIndex].setUserAnswer(answer: answer));
+          if (startIndex + 1 == questions.length) {
+            activeScreen = 'results-screen';
+          } else {
+            startIndex++;
+          }
+          setState(() {});
+        },
       );
     }
 
     if (activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
-        choseAnswers: selectedAnswers,
         onRestart: restartQuiz,
+        answeredQuestions: answeredQuestion,
       );
     }
 
@@ -63,7 +67,7 @@ class _QuizState extends State<Quiz> {
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 78, 13, 151),
-                Color.fromARGB(255, 107, 15, 168)
+                Color.fromARGB(255, 163, 15, 168)
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

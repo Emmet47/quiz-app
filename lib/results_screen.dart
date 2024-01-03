@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/data/questions.dart';
+import 'package:quizz_app/models/quiz_question.dart';
 import 'package:quizz_app/questions_summary/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen(
-      {super.key, required this.choseAnswers, required this.onRestart});
+  const ResultsScreen({
+    super.key,
+    required this.answeredQuestions,
+    required this.onRestart,
+  });
 
   final void Function() onRestart;
-  final List<String> choseAnswers;
-
-  List<Map<String, Object>> getSummaryData() {
-    final List<Map<String, Object>> summary = [];
-
-    for (var i = 0; i < choseAnswers.length; i++) {
-      summary.add({
-        'question_index': i,
-        'question': questions[i].text,
-        'correct_answer': questions[i].answers[0],
-        'user_answer': choseAnswers[i],
-      });
-    }
-    return summary;
-  }
+  final List<QuizQuestion> answeredQuestions;
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
+    final List<String> correctAnswersNum = [];
+    for (var i = 0; i < questions.length; i++) {
+      if (questions[i].answers.first == answeredQuestions[i].userAnswer) {
+        correctAnswersNum.add(i.toString());
+      } else {
+        continue;
+      }
+    }
+
     final numTotalQuestions = questions.length;
-    final numCorrectQuestions = summaryData.where((data) {
-      // Where tam olarak basıl çalışıyor?
-      return data['user_answer'] == data['correct_answer'];
-    }).length;
+    int numCorrectQuestions = correctAnswersNum.length;
 
     return SizedBox(
       width: double.infinity,
@@ -52,7 +47,7 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            QuestionsSummary(summaryData),
+            QuestionsSummary(answeredQuestions: answeredQuestions),
             const SizedBox(
               height: 30,
             ),
